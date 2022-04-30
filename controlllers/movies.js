@@ -3,9 +3,6 @@ const ForbiddenError = require('../errors/ForbiddenError');
 const NotFoundError = require('../errors/NotFoundError');
 const Movie = require('../models/movie');
 
-// # возвращает все сохранённые текущим пользователем фильмы
-// GET /movies
-
 module.exports.getMyMovies = async (req, res, next) => {
   try {
     const myMovies = await Movie.find({}).populate(['owner']);
@@ -18,11 +15,6 @@ module.exports.getMyMovies = async (req, res, next) => {
     next(err);
   }
 };
-
-// # создаёт фильм с переданными в теле
-// # country, director, duration, year, description, image, trailer,
-// # nameRU, nameEN и thumbnail, movieId
-// POST /movies
 
 module.exports.createMovie = async (req, res, next) => {
   try {
@@ -65,9 +57,6 @@ module.exports.createMovie = async (req, res, next) => {
     }
   }
 };
-
-// # удаляет сохранённый фильм по id
-// DELETE /movies/_id
 
 module.exports.removeMovie = async (req, res, next) => {
   try {

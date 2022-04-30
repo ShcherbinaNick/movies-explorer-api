@@ -11,9 +11,6 @@ const UnAuthtorizedError = require('../errors/UnauthorizedError');
 const { NODE_ENV, JWT_SECRET } = process.env;
 const SALT_ROUNDS = 10;
 
-// # возвращает информацию о пользователе (email и имя)
-// GET /users/me
-
 module.exports.getMe = async (req, res, next) => {
   try {
     const { _id } = req.user;
@@ -27,9 +24,6 @@ module.exports.getMe = async (req, res, next) => {
     next(err);
   }
 };
-
-// # обновляет информацию о пользователе (email и имя)
-// PATCH /users/me
 
 module.exports.updateUser = async (req, res, next) => {
   try {
@@ -58,10 +52,6 @@ module.exports.updateUser = async (req, res, next) => {
   }
 };
 
-// # создаёт пользователя с переданными в теле
-// # email, password и name
-// POST /signup
-
 module.exports.createUser = async (req, res, next) => {
   try {
     const { name, password, email } = req.body;
@@ -85,10 +75,6 @@ module.exports.createUser = async (req, res, next) => {
   }
 };
 
-// # проверяет переданные в теле почту и пароль
-// # и возвращает JWT
-// POST /signin
-
 module.exports.login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
@@ -111,10 +97,6 @@ module.exports.login = async (req, res, next) => {
     next(new UnAuthtorizedError('Требуется авторизация'));
   }
 };
-
-// # Обратите внимание: если сохранять JWT в куках,
-// # понадобится дополнительный роут POST /signout.
-// # При запросе к роуту удалится JWT из куков пользователя.
 
 module.exports.logout = async (req, res, next) => {
   try {
