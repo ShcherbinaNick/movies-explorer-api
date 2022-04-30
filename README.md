@@ -1,1 +1,5 @@
-# movies-explorer-api
+# Дипломная работа Я.Практикум (Бэкенд)
+
+В данном репозитории расположен сервер для дипломной работы Я.Практикум.
+
+Репозиторий фронтенда: https://github.com/ShcherbinaNick/movies-explorer-frontend
