@@ -1,8 +1,8 @@
 const allowedCors = [
-  'https://shcherbinanick.nomoredomains.work',
-  'https://shcherbinanick.nomoredomains.work/',
-  'http://shcherbinanick.nomoredomains.work',
-  'http://shcherbinanick.nomoredomains.work/',
+  'https://nick-diploma.nomoredomains.work',
+  'https://nick-diploma.nomoredomains.work/',
+  'http://nick-diploma.nomoredomains.work',
+  'http://nick-diploma.nomoredomains.work/',
   'http://localhost:3001',
   'http://localhost:3001/',
   'https://localhost:3001',
