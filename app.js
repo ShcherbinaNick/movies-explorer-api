@@ -1,8 +1,10 @@
-require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
+const helmet = require('helmet');
 const { errors } = require('celebrate');
+const { limiter } = require('./utils/limiter');
+const { PORT, MONGO_URL } = require('./config');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { routes } = require('./routes');
 const { handleError } = require('./middlewares/handleError');
@@ -10,9 +12,9 @@ const cors = require('./middlewares/cors');
 
 const app = express();
 
-const { PORT = 3000, MONGO_URL = 'mongodb://localhost:27017/moviesdb' } = process.env;
-
 app.use(cookieParser());
+app.use(limiter);
+app.use(helmet());
 app.use(cors);
 app.use(requestLogger);
 

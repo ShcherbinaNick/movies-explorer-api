@@ -8,7 +8,8 @@ const BadRequestError = require('../errors/BadRequestError');
 const ConflictRequestError = require('../errors/ConflictRequestError');
 const UnAuthtorizedError = require('../errors/UnauthorizedError');
 
-const { NODE_ENV, JWT_SECRET } = process.env;
+const { JWT_SECRET } = require('../config');
+
 const SALT_ROUNDS = 10;
 
 module.exports.getMe = async (req, res, next) => {
@@ -85,7 +86,7 @@ module.exports.login = async (req, res, next) => {
     if (user) {
       const token = jwt.sign(
         { _id: user._id },
-        NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
+        JWT_SECRET,
         { expiresIn: '7d' },
       );
       res.cookie('token', token, {
@@ -94,7 +95,7 @@ module.exports.login = async (req, res, next) => {
       }).status(200).send({ message: 'Аутентификация пройдена' });
     }
   } catch (err) {
-    next(new UnAuthtorizedError('Требуется авторизация'));
+    next(err);
   }
 };
 
