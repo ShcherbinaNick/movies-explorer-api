@@ -29,18 +29,13 @@ module.exports.getMe = async (req, res, next) => {
 module.exports.updateUser = async (req, res, next) => {
   try {
     const { name, email } = req.body;
-    const checkUniqueEmail = await User.findOne({ email });
-    if (!checkUniqueEmail) {
-      const updatedUser = await User.findByIdAndUpdate(
-        req.user._id,
-        { name, email },
-        { new: true, runValidators: true },
-      );
-      if (updatedUser) {
-        res.send(updatedUser);
-      }
-    } else {
-      throw new ConflictRequestError('Пользователь с таким email уже зарегистрирован');
+    const updatedUser = await User.findByIdAndUpdate(
+      req.user._id,
+      { name, email },
+      { new: true, runValidators: true },
+    );
+    if (updatedUser) {
+      res.send(updatedUser);
     }
   } catch (err) {
     if (err.name === 'ValidationError') {
@@ -56,9 +51,6 @@ module.exports.updateUser = async (req, res, next) => {
 module.exports.createUser = async (req, res, next) => {
   try {
     const { name, password, email } = req.body;
-    if (!name && !password && !email) {
-      throw new BadRequestError('Заполните все поля');
-    }
     const hashedPass = await bcrypt.hash(password, SALT_ROUNDS);
     const user = await User.create({
       name, email, password: hashedPass,

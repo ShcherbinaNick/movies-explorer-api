@@ -13,10 +13,10 @@ const cors = require('./middlewares/cors');
 const app = express();
 
 app.use(cookieParser());
+app.use(requestLogger);
 app.use(limiter);
 app.use(helmet());
 app.use(cors);
-app.use(requestLogger);
 
 app.use(routes);
 
