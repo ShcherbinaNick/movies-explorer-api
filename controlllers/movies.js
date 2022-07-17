@@ -5,7 +5,7 @@ const Movie = require('../models/movie');
 
 module.exports.getMyMovies = async (req, res, next) => {
   try {
-    const myMovies = await Movie.find({}).populate(['owner']);
+    const myMovies = await Movie.find({ owner: req.user._id }).populate(['owner']);
     if (!myMovies) {
       throw new NotFoundError('Нет сохранённых фильмов');
     } else {
