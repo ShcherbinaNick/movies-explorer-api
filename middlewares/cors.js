@@ -3,10 +3,10 @@ const allowedCors = [
   'https://localhost:3000',
   'http://localhost:3001',
   'https://localhost:3001',
-  'https://nick-diploma.nomoredomains.work',
-  'https://nick-diploma.nomoredomains.work/',
-  'http://nick-diploma.nomoredomains.work',
-  'http://nick-diploma.nomoredomains.work/',
+  'https://niksher.movies-diploma.ru',
+  'https://niksher.movies-diploma.ru/',
+  'http://niksher.movies-diploma.ru',
+  'http://niksher.movies-diploma.ru/',
 ];
 
 const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
